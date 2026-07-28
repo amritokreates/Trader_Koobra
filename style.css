@@ -1,0 +1,657 @@
+/* ===========================
+   RESET
+=========================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:'Hind Siliguri',sans-serif;
+
+background:
+radial-gradient(circle at top,#213b68 0%,#0b1424 45%,#050b14 100%);
+
+overflow-x:hidden;
+
+color:#fff;
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:30px;
+
+position:relative;
+
+}
+
+/* ===========================
+BACKGROUND GLOW
+=========================== */
+
+.bg-circle{
+
+position:absolute;
+
+border-radius:50%;
+
+filter:blur(120px);
+
+opacity:.35;
+
+z-index:-1;
+
+}
+
+.bg-circle.one{
+
+width:300px;
+
+height:300px;
+
+background:#005eff;
+
+top:-100px;
+
+left:-120px;
+
+}
+
+.bg-circle.two{
+
+width:250px;
+
+height:250px;
+
+background:#55ff5d;
+
+bottom:-100px;
+
+right:-100px;
+
+opacity:.15;
+
+}
+
+/* ===========================
+CONTAINER
+=========================== */
+
+.container{
+
+width:100%;
+
+max-width:430px;
+
+}
+
+/* ===========================
+MAIN CARD
+=========================== */
+
+.card{
+
+position:relative;
+
+padding:30px 24px 40px;
+
+border-radius:34px;
+
+background:rgba(12,20,36,.82);
+
+backdrop-filter:blur(20px);
+
+border:2px solid rgba(255, 70, 70, 0.65);
+
+box-shadow:
+
+0 0 0 1px rgba(255,215,120,.2),
+
+0 20px 60px rgba(0,0,0,.55),
+
+0 0 40px rgba(255,194,70,.08);
+
+overflow:hidden;
+
+}
+
+/* GOLD SHINE */
+
+.card::before{
+
+content:"";
+
+position:absolute;
+
+left:-40%;
+
+top:-45%;
+
+width:180%;
+
+height:220px;
+
+background:linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.06),
+
+transparent
+
+);
+
+transform:rotate(-8deg);
+
+pointer-events:none;
+
+}
+
+/* ===========================
+TOP BADGE
+=========================== */
+
+.top-badge{
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+width:100%;
+
+padding:13px 16px;
+
+border-radius:999px;
+
+background:linear-gradient(
+
+90deg,
+
+#5ff669,
+
+#44f841
+
+);
+
+color:#111;
+
+font-weight:700;
+
+font-size:14px;
+
+box-shadow:
+
+0 8px 20px rgba(255,194,70,.35);
+
+margin-bottom:34px;
+
+text-align:center;
+
+}
+
+/* ===========================
+PROFILE AREA
+=========================== */
+
+.profile-area{
+
+display:flex;
+
+justify-content:center;
+
+position:relative;
+
+margin-bottom:22px;
+
+}
+
+/* OUTER GOLD RING */
+
+.ring-1{
+
+width:148px;
+
+height:148px;
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:
+
+linear-gradient(
+
+145deg,
+
+#ffd978,
+
+#d89d1b
+
+);
+
+box-shadow:
+
+0 0 30px rgba(255,196,60,.35);
+
+}
+
+/* INNER RING */
+
+.ring-2{
+
+width:132px;
+
+height:132px;
+
+border-radius:50%;
+
+background:#101b2d;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+.profile{
+
+width:120px;
+
+height:120px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+border:3px solid #fff;
+
+}
+
+/* ===========================
+LIVE BADGE
+=========================== */
+
+.live-badge{
+
+position:absolute;
+
+right:70px;
+
+bottom:0;
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+padding:8px 14px;
+
+background:#f44336;
+
+border-radius:999px;
+
+font-size:14px;
+
+font-weight:700;
+
+box-shadow:
+
+0 10px 20px rgba(244,67,54,.35);
+
+}
+
+.dot{
+
+width:10px;
+
+height:10px;
+
+background:#fff;
+
+border-radius:50%;
+
+animation:pulse 1s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+50%{
+
+transform:scale(1.5);
+
+opacity:.5;
+
+}
+
+100%{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+}
+/* ===========================
+TITLE
+=========================== */
+
+.title{
+
+font-size:34px;
+
+font-weight:700;
+
+line-height:1.35;
+
+text-align:center;
+
+margin-top:10px;
+
+color:#ffffff;
+
+text-shadow:
+0 2px 10px rgba(255,255,255,.15);
+
+}
+
+.emoji{
+
+margin-top:14px;
+
+text-align:center;
+
+font-size:24px;
+
+letter-spacing:10px;
+
+}
+
+.subs{
+
+margin-top:18px;
+
+text-align:center;
+
+font-size:18px;
+
+font-weight:600;
+
+color:#d9e5ff;
+
+opacity:.95;
+
+}
+
+/* ===========================
+STATS
+=========================== */
+
+.stats{
+
+margin-top:35px;
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:15px;
+
+}
+
+.box{
+
+background:linear-gradient(
+180deg,
+rgba(255,255,255,.08),
+rgba(255,255,255,.03)
+);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:20px;
+
+padding:18px 10px;
+
+text-align:center;
+
+transition:.35s;
+
+backdrop-filter:blur(10px);
+
+}
+
+.box:hover{
+
+transform:translateY(-6px);
+
+border-color:#f7c248;
+
+box-shadow:
+
+0 12px 25px rgba(0,0,0,.35),
+
+0 0 25px rgba(247,194,72,.25);
+
+}
+
+.box h2{
+
+font-size:28px;
+
+font-weight:700;
+
+color:#ffd76b;
+
+margin-bottom:8px;
+
+}
+
+.box p{
+
+font-size:15px;
+
+color:#d9d9d9;
+
+line-height:1.4;
+
+}
+
+/* ===========================
+JOIN BUTTON
+=========================== */
+
+.join-btn{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+margin-top:38px;
+
+padding:18px 20px;
+
+border-radius:999px;
+
+background:linear-gradient(
+90deg,
+#ffd86f,
+#f8b62d
+);
+
+color:#111;
+
+font-size:18px;
+
+font-weight:700;
+
+text-decoration:none;
+
+transition:.35s;
+
+box-shadow:
+
+0 10px 25px rgba(248,182,45,.45),
+
+0 0 35px rgba(248,182,45,.25);
+
+}
+
+.join-btn:hover{
+
+transform:translateY(-4px) scale(1.02);
+
+box-shadow:
+
+0 15px 35px rgba(248,182,45,.55),
+
+0 0 45px rgba(248,182,45,.4);
+
+}
+
+.join-btn:active{
+
+transform:scale(.97);
+
+}
+
+/* ===========================
+RESPONSIVE
+=========================== */
+
+@media(max-width:480px){
+
+body{
+
+padding:18px;
+
+}
+
+.card{
+
+padding:24px 18px 32px;
+
+border-radius:28px;
+
+}
+
+.top-badge{
+
+font-size:13px;
+
+padding:12px;
+
+}
+
+.ring-1{
+
+width:130px;
+height:130px;
+
+}
+
+.ring-2{
+
+width:116px;
+height:116px;
+
+}
+
+.profile{
+
+width:104px;
+height:104px;
+
+}
+
+.live-badge{
+
+right:40px;
+
+font-size:12px;
+
+padding:7px 12px;
+
+}
+
+.title{
+
+font-size:28px;
+
+}
+
+.subs{
+
+font-size:16px;
+
+}
+
+.stats{
+
+gap:10px;
+
+}
+
+.box{
+
+padding:16px 8px;
+
+}
+
+.box h2{
+
+font-size:22px;
+
+}
+
+.box p{
+
+font-size:13px;
+
+}
+
+.join-btn{
+
+font-size:16px;
+
+padding:16px;
+
+}
+
+}
