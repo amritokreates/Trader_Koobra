@@ -43,10 +43,26 @@ card.addEventListener("mouseleave", () => {
 
 joinBtn.addEventListener("click", function (e) {
 
+    e.preventDefault();
+
+    const url = this.href;
+
+    // Meta Pixel Lead Event
+    fbq('track', 'Lead', {}, {
+        event_callback: function () {
+            window.open(url, "_blank");
+        }
+    });
+
+    // Fallback: যদি callback না আসে, 800ms পরে link খুলবে
+    setTimeout(function () {
+        window.open(url, "_blank");
+    }, 800);
+
+    // Ripple Effect
     const circle = document.createElement("span");
 
-    const rect = this.getBoundingClientRect();
-
+    const rect = joinBtn.getBoundingClientRect();
     const size = Math.max(rect.width, rect.height);
 
     circle.style.width = size + "px";
@@ -57,18 +73,12 @@ joinBtn.addEventListener("click", function (e) {
 
     circle.classList.add("ripple");
 
-    this.appendChild(circle);
+    joinBtn.appendChild(circle);
 
     setTimeout(() => {
-
         circle.remove();
-
     }, 700);
 
-});
-
-joinBtn.addEventListener("click", function () {
-    fbq('track', 'Lead');
 });
 
 // ==============================
