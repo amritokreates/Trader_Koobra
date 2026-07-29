@@ -91,9 +91,7 @@ CONTAINER
 
 .container{
 
-width:100%;
-
-max-width:430px;
+ width: min(420px, 92vw);
 
 }
 
@@ -103,7 +101,9 @@ MAIN CARD
 
 .card{
 
-position:relative;
+ width: min(420px, 92vw);
+ 
+ position:relative;
 
 padding:30px 24px 40px;
 
