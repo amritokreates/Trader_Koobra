@@ -43,9 +43,6 @@ card.addEventListener("mouseleave", () => {
 
 joinBtn.addEventListener("click", function (e) {
 
-    // Meta Pixel Lead Event
-    fbq('track', 'Lead');
-
     const circle = document.createElement("span");
 
     const rect = this.getBoundingClientRect();
@@ -68,6 +65,10 @@ joinBtn.addEventListener("click", function (e) {
 
     }, 700);
 
+});
+
+joinBtn.addEventListener("click", function () {
+    fbq('track', 'Lead');
 });
 
 // ==============================
