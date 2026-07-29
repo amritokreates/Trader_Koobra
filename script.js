@@ -49,10 +49,10 @@ joinBtn.addEventListener("click", function (e) {
 
     // Meta Pixel Lead Event
     fbq('track', 'Lead', {}, {
-        event_callback: function () {
-            window.open(url, "_blank");
-        }
-    });
+    event_callback: function () {
+        window.open(url, "_blank");
+    }
+});
 
     // Fallback: যদি callback না আসে, 800ms পরে link খুলবে
     setTimeout(function () {
