@@ -1,5 +1,5 @@
 /* ===========================
-   RESET
+RESET
 =========================== */
 
 *{
@@ -19,8 +19,6 @@ font-family:'Hind Siliguri',sans-serif;
 background:
 radial-gradient(circle at top,#213b68 0%,#0b1424 45%,#050b14 100%);
 
-overflow-x:hidden;
-
 color:#fff;
 
 min-height:100vh;
@@ -31,14 +29,17 @@ justify-content:center;
 
 align-items:center;
 
-padding:30px;
+padding:25px;
+
+overflow-x:hidden;
+overflow-y:auto;
 
 position:relative;
 
 }
 
 /* ===========================
-BACKGROUND GLOW
+BACKGROUND
 =========================== */
 
 .bg-circle{
@@ -49,39 +50,35 @@ border-radius:50%;
 
 filter:blur(120px);
 
-opacity:.35;
-
 z-index:-1;
+
+opacity:.35;
 
 }
 
 .bg-circle.one{
 
 width:300px;
-
 height:300px;
 
-background:#005eff;
+background:#0066ff;
 
-top:-100px;
-
+top:-120px;
 left:-120px;
 
 }
 
 .bg-circle.two{
 
-width:250px;
+width:260px;
+height:260px;
 
-height:250px;
+background:#5dff72;
 
-background:#55ff5d;
+right:-120px;
+bottom:-120px;
 
-bottom:-100px;
-
-right:-100px;
-
-opacity:.15;
+opacity:.18;
 
 }
 
@@ -91,43 +88,67 @@ CONTAINER
 
 .container{
 
- width: min(420px, 92vw);
+width:100%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
 
 }
 
 /* ===========================
-MAIN CARD
+CARD
 =========================== */
 
 .card{
 
- width: min(420px, 92vw);
- 
- position:relative;
-
-padding:30px 24px 40px;
-
-border-radius:34px;
+width:min(420px,95vw);
 
 background:rgba(12,20,36,.82);
 
 backdrop-filter:blur(20px);
 
-border:2px solid rgba(255, 70, 70, 0.65);
+border-radius:34px;
+
+padding:30px 24px 40px;
+
+border:2px solid rgba(255,70,70,.65);
 
 box-shadow:
 
-0 0 0 1px rgba(255,215,120,.2),
+0 0 0 1px rgba(255,215,120,.15),
 
 0 20px 60px rgba(0,0,0,.55),
 
 0 0 40px rgba(255,194,70,.08);
 
+position:relative;
+
 overflow:hidden;
+
+transition:.35s;
+
+animation:floating 3.5s ease-in-out infinite;
 
 }
 
-/* GOLD SHINE */
+@keyframes floating{
+
+0%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-6px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
 
 .card::before{
 
@@ -137,19 +158,21 @@ position:absolute;
 
 left:-40%;
 
-top:-45%;
+top:-50%;
 
 width:180%;
 
 height:220px;
 
-background:linear-gradient(
+background:
+
+linear-gradient(
 
 90deg,
 
 transparent,
 
-rgba(255,255,255,.06),
+rgba(255,255,255,.05),
 
 transparent
 
@@ -167,27 +190,15 @@ TOP BADGE
 
 .top-badge{
 
-display:inline-flex;
-
-align-items:center;
-
-justify-content:center;
-
 width:100%;
 
-padding:13px 16px;
+padding:13px;
 
 border-radius:999px;
 
-background:linear-gradient(
+background:
 
-90deg,
-
-#5ff669,
-
-#44f841
-
-);
+linear-gradient(90deg,#5ff669,#44f841);
 
 color:#111;
 
@@ -195,18 +206,18 @@ font-weight:700;
 
 font-size:14px;
 
+text-align:center;
+
+margin-bottom:34px;
+
 box-shadow:
 
 0 8px 20px rgba(255,194,70,.35);
 
-margin-bottom:34px;
-
-text-align:center;
-
 }
 
 /* ===========================
-PROFILE AREA
+PROFILE
 =========================== */
 
 .profile-area{
@@ -217,19 +228,14 @@ justify-content:center;
 
 position:relative;
 
-margin-bottom:22px;
+margin-bottom:20px;
 
 }
-
-/* OUTER GOLD RING */
 
 .ring-1{
 
 width:148px;
-
 height:148px;
-
-border-radius:50%;
 
 display:flex;
 
@@ -237,17 +243,11 @@ justify-content:center;
 
 align-items:center;
 
+border-radius:50%;
+
 background:
 
-linear-gradient(
-
-145deg,
-
-#ffd978,
-
-#d89d1b
-
-);
+linear-gradient(145deg,#ffd978,#d89d1b);
 
 box-shadow:
 
@@ -255,17 +255,10 @@ box-shadow:
 
 }
 
-/* INNER RING */
-
 .ring-2{
 
 width:132px;
-
 height:132px;
-
-border-radius:50%;
-
-background:#101b2d;
 
 display:flex;
 
@@ -273,33 +266,38 @@ justify-content:center;
 
 align-items:center;
 
+border-radius:50%;
+
+background:#101b2d;
+
 }
 
 .profile{
 
 width:120px;
-
 height:120px;
 
 border-radius:50%;
 
 object-fit:cover;
 
-border:3px solid #fff;
+display:block;
+
+border:3px solid white;
 
 }
 
 /* ===========================
-LIVE BADGE
+LIVE
 =========================== */
 
 .live-badge{
 
 position:absolute;
 
-right:70px;
+right:60px;
 
-bottom:0;
+bottom:5px;
 
 display:flex;
 
@@ -309,9 +307,9 @@ gap:8px;
 
 padding:8px 14px;
 
-background:#f44336;
-
 border-radius:999px;
+
+background:#ff4d40;
 
 font-size:14px;
 
@@ -319,17 +317,16 @@ font-weight:700;
 
 box-shadow:
 
-0 10px 20px rgba(244,67,54,.35);
+0 10px 20px rgba(255,0,0,.3);
 
 }
 
 .dot{
 
 width:10px;
-
 height:10px;
 
-background:#fff;
+background:white;
 
 border-radius:50%;
 
@@ -343,13 +340,11 @@ animation:pulse 1s infinite;
 
 transform:scale(1);
 
-opacity:1;
-
 }
 
 50%{
 
-transform:scale(1.5);
+transform:scale(1.6);
 
 opacity:.5;
 
@@ -359,31 +354,23 @@ opacity:.5;
 
 transform:scale(1);
 
-opacity:1;
-
 }
 
 }
+
 /* ===========================
 TITLE
 =========================== */
 
 .title{
 
-font-size:34px;
-
-font-weight:700;
-
-line-height:1.35;
+margin-top:12px;
 
 text-align:center;
 
-margin-top:10px;
+font-size:34px;
 
-color:#ffffff;
-
-text-shadow:
-0 2px 10px rgba(255,255,255,.15);
+font-weight:700;
 
 }
 
@@ -409,9 +396,7 @@ font-size:18px;
 
 font-weight:600;
 
-color:#d9e5ff;
-
-opacity:.95;
+color:#dbe5ff;
 
 }
 
@@ -425,7 +410,9 @@ margin-top:35px;
 
 display:grid;
 
-grid-template-columns:repeat(3,1fr);
+grid-template-columns:
+
+repeat(auto-fit,minmax(90px,1fr));
 
 gap:15px;
 
@@ -433,15 +420,21 @@ gap:15px;
 
 .box{
 
-background:linear-gradient(
+background:
+
+linear-gradient(
+
 180deg,
+
 rgba(255,255,255,.08),
+
 rgba(255,255,255,.03)
+
 );
 
-border:1px solid rgba(255,255,255,.08);
-
 border-radius:20px;
+
+border:1px solid rgba(255,255,255,.08);
 
 padding:18px 10px;
 
@@ -449,19 +442,17 @@ text-align:center;
 
 transition:.35s;
 
-backdrop-filter:blur(10px);
-
 }
 
 .box:hover{
 
-transform:translateY(-6px);
+transform:translateY(-5px);
 
 border-color:#f7c248;
 
 box-shadow:
 
-0 12px 25px rgba(0,0,0,.35),
+0 10px 25px rgba(0,0,0,.35),
 
 0 0 25px rgba(247,194,72,.25);
 
@@ -470,8 +461,6 @@ box-shadow:
 .box h2{
 
 font-size:28px;
-
-font-weight:700;
 
 color:#ffd76b;
 
@@ -483,17 +472,17 @@ margin-bottom:8px;
 
 font-size:15px;
 
-color:#d9d9d9;
-
-line-height:1.4;
+color:#ddd;
 
 }
 
 /* ===========================
-JOIN BUTTON
+BUTTON
 =========================== */
 
 .join-btn{
+
+margin-top:38px;
 
 display:flex;
 
@@ -501,27 +490,33 @@ justify-content:center;
 
 align-items:center;
 
-text-align:center;
+text-decoration:none;
 
-margin-top:38px;
-
-padding:18px 20px;
+padding:18px;
 
 border-radius:999px;
 
-background:linear-gradient(
-90deg,
-#ffd86f,
-#f8b62d
-);
+background:
 
-color:#111;
+linear-gradient(
+
+90deg,
+
+#ffd86f,
+
+#f8b62d
+
+);
 
 font-size:18px;
 
 font-weight:700;
 
-text-decoration:none;
+color:#111;
+
+position:relative;
+
+overflow:hidden;
 
 transition:.35s;
 
@@ -535,19 +530,43 @@ box-shadow:
 
 .join-btn:hover{
 
-transform:translateY(-4px) scale(1.02);
-
-box-shadow:
-
-0 15px 35px rgba(248,182,45,.55),
-
-0 0 45px rgba(248,182,45,.4);
+transform:translateY(-3px);
 
 }
 
 .join-btn:active{
 
-transform:scale(.97);
+transform:scale(.98);
+
+}
+
+/* Ripple */
+
+.ripple{
+
+position:absolute;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.45);
+
+transform:scale(0);
+
+animation:ripple .7s linear;
+
+pointer-events:none;
+
+}
+
+@keyframes ripple{
+
+to{
+
+transform:scale(4);
+
+opacity:0;
+
+}
 
 }
 
@@ -559,54 +578,15 @@ RESPONSIVE
 
 body{
 
-padding:18px;
+padding:16px;
 
 }
 
 .card{
 
-padding:24px 18px 32px;
+padding:24px 18px 30px;
 
 border-radius:28px;
-
-}
-
-.top-badge{
-
-font-size:13px;
-
-padding:12px;
-
-}
-
-.ring-1{
-
-width:130px;
-height:130px;
-
-}
-
-.ring-2{
-
-width:116px;
-height:116px;
-
-}
-
-.profile{
-
-width:104px;
-height:104px;
-
-}
-
-.live-badge{
-
-right:40px;
-
-font-size:12px;
-
-padding:7px 12px;
 
 }
 
@@ -622,15 +602,13 @@ font-size:16px;
 
 }
 
-.stats{
+.live-badge{
 
-gap:10px;
+right:35px;
 
-}
+font-size:12px;
 
-.box{
-
-padding:16px 8px;
+padding:7px 12px;
 
 }
 
@@ -651,6 +629,36 @@ font-size:13px;
 font-size:16px;
 
 padding:16px;
+
+}
+
+}
+
+@media(max-width:380px){
+
+.title{
+
+font-size:24px;
+
+}
+
+.live-badge{
+
+right:18px;
+
+}
+
+.box h2{
+
+font-size:18px;
+
+}
+
+.join-btn{
+
+font-size:14px;
+
+padding:14px;
 
 }
 

@@ -8,76 +8,108 @@ const boxes = document.querySelectorAll(".box");
 const liveBadge = document.querySelector(".live-badge");
 
 // ==============================
-// Card Mouse Tilt
+// Mouse Tilt (Desktop Only)
 // ==============================
+
+if (window.innerWidth > 768) {
 
 card.addEventListener("mousemove", (e) => {
 
-    const rect = card.getBoundingClientRect();
+const rect = card.getBoundingClientRect();
 
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+const x = e.clientX - rect.left;
+const y = e.clientY - rect.top;
 
-    const rotateY = (x / rect.width - 0.5) * 12;
-    const rotateX = (0.5 - y / rect.height) * 12;
+const rotateY = (x / rect.width - 0.5) * 10;
+const rotateX = (0.5 - y / rect.height) * 10;
 
-    card.style.transform = `
-        perspective(1200px)
-        rotateX(${rotateX}deg)
-        rotateY(${rotateY}deg)
-        scale(1.02)
-    `;
+card.style.transform = `
+perspective(1200px)
+rotateX(${rotateX}deg)
+rotateY(${rotateY}deg)
+`;
 
 });
 
 card.addEventListener("mouseleave", () => {
 
-    card.style.transform =
-        "perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1)";
+card.style.transform =
+"perspective(1200px) rotateX(0deg) rotateY(0deg)";
 
 });
 
+}
+
 // ==============================
-// Button Ripple Effect
+// Telegram Button
 // ==============================
 
 joinBtn.addEventListener("click", function (e) {
 
-    e.preventDefault();
+e.preventDefault();
 
-    const url = this.href;
+const url = this.href;
 
-    // Meta Pixel Lead Event
-    fbq('track', 'Lead', {}, {
-    event_callback: function () {
-        window.open(url, "_blank");
-    }
+let opened = false;
+
+// Ripple
+
+const circle = document.createElement("span");
+
+const rect = this.getBoundingClientRect();
+
+const size = Math.max(rect.width, rect.height);
+
+circle.style.width = size + "px";
+circle.style.height = size + "px";
+
+circle.style.left =
+(e.clientX - rect.left - size / 2) + "px";
+
+circle.style.top =
+(e.clientY - rect.top - size / 2) + "px";
+
+circle.classList.add("ripple");
+
+this.appendChild(circle);
+
+setTimeout(() => {
+
+circle.remove();
+
+},700);
+
+// Meta Lead
+
+fbq('track','Lead',{},{
+
+event_callback:function(){
+
+if(!opened){
+
+opened=true;
+
+window.open(url,"_blank");
+
+}
+
+}
+
 });
 
-    // Fallback: যদি callback না আসে, 800ms পরে link খুলবে
-    setTimeout(function () {
-        window.open(url, "_blank");
-    }, 800);
+// Fallback
 
-    // Ripple Effect
-    const circle = document.createElement("span");
+setTimeout(()=>{
 
-    const rect = joinBtn.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
+if(!opened){
 
-    circle.style.width = size + "px";
-    circle.style.height = size + "px";
+opened=true;
 
-    circle.style.left = (e.clientX - rect.left - size / 2) + "px";
-    circle.style.top = (e.clientY - rect.top - size / 2) + "px";
+window.open(url,"_blank");
 
-    circle.classList.add("ripple");
+}
 
-    joinBtn.appendChild(circle);
-
-    setTimeout(() => {
-        circle.remove();
-    }, 700);
+},800);
 
 });
 
@@ -85,101 +117,70 @@ joinBtn.addEventListener("click", function (e) {
 // Scroll Reveal
 // ==============================
 
-const observer = new IntersectionObserver(entries => {
+const observer = new IntersectionObserver((entries)=>{
 
-    entries.forEach(entry => {
+entries.forEach((entry)=>{
 
-        if (entry.isIntersecting) {
+if(entry.isIntersecting){
 
-            entry.target.classList.add("show");
+entry.target.classList.add("show");
 
-        }
-
-    });
-
-}, {
-
-    threshold: .15
+}
 
 });
 
-boxes.forEach(box => {
+},{
+threshold:0.15
+});
 
-    observer.observe(box);
+boxes.forEach((box)=>{
+
+observer.observe(box);
 
 });
 
 // ==============================
-// Floating Animation
+// Live Badge
 // ==============================
 
-setInterval(() => {
+setInterval(()=>{
 
-    card.animate([
+liveBadge.classList.toggle("active");
 
-        {
-            transform: "translateY(0px)"
-        },
-
-        {
-            transform: "translateY(-6px)"
-        },
-
-        {
-            transform: "translateY(0px)"
-        }
-
-    ], {
-
-        duration: 3500,
-        easing: "ease-in-out"
-
-    });
-
-}, 3500);
+},900);
 
 // ==============================
-// Live Badge Glow
+// Counter
 // ==============================
 
-setInterval(() => {
+const numbers=document.querySelectorAll(".box h2");
 
-    liveBadge.classList.toggle("active");
+numbers.forEach(el=>{
 
-}, 900);
+const text=el.innerText;
 
-// ==============================
-// Counter Animation
-// ==============================
+const match=text.match(/\d+/);
 
-const numbers = document.querySelectorAll(".box h2");
+if(!match)return;
 
-numbers.forEach(el => {
+const end=parseInt(match[0]);
 
-    const text = el.innerText;
+let start=0;
 
-    const match = text.match(/\d+/);
+const timer=setInterval(()=>{
 
-    if (!match) return;
+start+=Math.ceil(end/50);
 
-    const end = parseInt(match[0]);
+if(start>=end){
 
-    let start = 0;
+start=end;
 
-    const timer = setInterval(() => {
+clearInterval(timer);
 
-        start += Math.ceil(end / 50);
+}
 
-        if (start >= end) {
+el.innerText=text.replace(match[0],start);
 
-            start = end;
-
-            clearInterval(timer);
-
-        }
-
-        el.innerText = text.replace(match[0], start);
-
-    }, 20);
+},20);
 
 });
