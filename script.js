@@ -1,186 +1,57 @@
-// ==============================
-// Elements
-// ==============================
+// =========================================
+// Telegram Landing Page Script
+// =========================================
 
-const card = document.querySelector(".card");
-const joinBtn = document.querySelector(".join-btn");
-const boxes = document.querySelectorAll(".box");
-const liveBadge = document.querySelector(".live-badge");
+const joinBtn = document.getElementById("joinBtn");
 
-// ==============================
-// Mouse Tilt (Desktop Only)
-// ==============================
+if (joinBtn) {
 
-if (window.innerWidth > 768) {
+    let isProcessing = false;
 
-card.addEventListener("mousemove", (e) => {
+    joinBtn.addEventListener("click", function (e) {
 
-const rect = card.getBoundingClientRect();
+        e.preventDefault();
 
-const x = e.clientX - rect.left;
-const y = e.clientY - rect.top;
+        if (isProcessing) return;
+        isProcessing = true;
 
-const rotateY = (x / rect.width - 0.5) * 10;
-const rotateX = (0.5 - y / rect.height) * 10;
+        const telegramURL = this.href;
 
-card.style.transform = `
-perspective(1200px)
-rotateX(${rotateX}deg)
-rotateY(${rotateY}deg)
-`;
+        // Meta Pixel Subscribe Event
+        if (typeof fbq === "function") {
+            fbq("track", "Subscribe");
+        }
 
-});
+        // Open Telegram after event fires
+        setTimeout(() => {
+            window.open(telegramURL, "_blank", "noopener,noreferrer");
+            isProcessing = false;
+        }, 300);
 
-card.addEventListener("mouseleave", () => {
-
-card.style.transform =
-"perspective(1200px) rotateX(0deg) rotateY(0deg)";
-
-});
+    });
 
 }
 
-// ==============================
-// Telegram Button
-// ==============================
 
-joinBtn.addEventListener("click", function (e) {
+// Optional: Disable right click
+// Uncomment if you want
+/*
+document.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+});
+*/
 
-e.preventDefault();
 
-const url = this.href;
-
-let opened = false;
-
-// Ripple
-
-const circle = document.createElement("span");
-
-const rect = this.getBoundingClientRect();
-
-const size = Math.max(rect.width, rect.height);
-
-circle.style.width = size + "px";
-circle.style.height = size + "px";
-
-circle.style.left =
-(e.clientX - rect.left - size / 2) + "px";
-
-circle.style.top =
-(e.clientY - rect.top - size / 2) + "px";
-
-circle.classList.add("ripple");
-
-this.appendChild(circle);
-
-setTimeout(() => {
-
-circle.remove();
-
-},700);
-
-// Meta Lead
-
-fbq('track','Lead',{},{
-
-event_callback:function(){
-
-if(!opened){
-
-opened=true;
-
-window.open(url,"_blank");
-
-}
-
-}
-
+// Optional: Disable drag on images
+document.querySelectorAll("img").forEach(img => {
+    img.setAttribute("draggable", "false");
 });
 
-// Fallback
 
-setTimeout(()=>{
-
-if(!opened){
-
-opened=true;
-
-window.open(url,"_blank");
-
-}
-
-},800);
-
+// Smooth focus for accessibility
+window.addEventListener("load", () => {
+    document.body.classList.add("loaded");
 });
 
-// ==============================
-// Scroll Reveal
-// ==============================
 
-const observer = new IntersectionObserver((entries)=>{
-
-entries.forEach((entry)=>{
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("show");
-
-}
-
-});
-
-},{
-threshold:0.15
-});
-
-boxes.forEach((box)=>{
-
-observer.observe(box);
-
-});
-
-// ==============================
-// Live Badge
-// ==============================
-
-setInterval(()=>{
-
-liveBadge.classList.toggle("active");
-
-},900);
-
-// ==============================
-// Counter
-// ==============================
-
-const numbers=document.querySelectorAll(".box h2");
-
-numbers.forEach(el=>{
-
-const text=el.innerText;
-
-const match=text.match(/\d+/);
-
-if(!match)return;
-
-const end=parseInt(match[0]);
-
-let start=0;
-
-const timer=setInterval(()=>{
-
-start+=Math.ceil(end/50);
-
-if(start>=end){
-
-start=end;
-
-clearInterval(timer);
-
-}
-
-el.innerText=text.replace(match[0],start);
-
-},20);
-
-});
+console.log("Telegram Landing Page Ready");
