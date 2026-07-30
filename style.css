@@ -61,10 +61,10 @@ h1{font-size:2.2rem;margin:12px 0}
  gap:16px;
  margin:24px 0 32px;
 }
-.stat{
- background:#12263c;
- padding:18px;
- border-radius:16px;
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
 }
 .stat strong{display:block;font-size:1.2rem}
 .stat span{color:var(--muted);font-size:.9rem}
@@ -112,4 +112,27 @@ h1{font-size:2.2rem;margin:12px 0}
     border-radius: 18px;
     display: block;
     margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .stat-card {
+        padding: 14px 8px;
+    }
+
+    .stat-card h3 {
+        font-size: 24px;
+    }
+
+    .stat-card p {
+        font-size: 12px;
+        line-height: 1.2;
+    }
+
 }
